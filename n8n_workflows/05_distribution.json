@@ -1,0 +1,66 @@
+{
+  "name": "NewsIQ_05_Distribution_v2",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": [
+          {
+            "type": "everyDay",
+            "hour": 15,
+            "minute": 0
+          }
+        ]
+      },
+      "id": "1e339529-718c-4b12-b94c-681224aa54a5",
+      "name": "Daily_Dist_Cron",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        100,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "rule": [
+          {
+            "type": "everyWeek",
+            "hour": 14,
+            "minute": 0,
+            "weekday": 1
+          }
+        ]
+      },
+      "id": "592312dd-bfd4-4434-a0cd-2a5ecaa96fdd",
+      "name": "Weekly_Dist_Cron",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        500,
+        100
+      ]
+    }
+  ],
+  "connections": {
+    "Daily_Dist_Cron": {
+      "main": []
+    },
+    "Weekly_Dist_Cron": {
+      "main": []
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [
+    {
+      "name": "news-iq"
+    },
+    {
+      "name": "distribution"
+    },
+    {
+      "name": "shortform"
+    }
+  ]
+}

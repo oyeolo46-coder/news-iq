@@ -1,0 +1,63 @@
+{
+  "name": "NewsIQ_04_Video_Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": [
+          {
+            "type": "everyDay",
+            "hour": 11,
+            "minute": 0
+          }
+        ]
+      },
+      "id": "cc37402d-5ce2-4007-be21-dddddff6e83b",
+      "name": "Daily_Video_Cron",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        100,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "rule": [
+          {
+            "type": "everyWeek",
+            "hour": 10,
+            "minute": 0,
+            "weekday": 1
+          }
+        ]
+      },
+      "id": "44a9158b-9fa1-4fb3-8e32-2dfbecc5a6f0",
+      "name": "Weekly_Video_Cron",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        500,
+        100
+      ]
+    }
+  ],
+  "connections": {
+    "Daily_Video_Cron": {
+      "main": []
+    },
+    "Weekly_Video_Cron": {
+      "main": []
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [
+    {
+      "name": "news-iq"
+    },
+    {
+      "name": "video"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "name": "NewsIQ_01_Scraper",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": [
+          {
+            "type": "everyDay",
+            "hour": 7,
+            "minute": 0
+          }
+        ],
+        "mode": "trigger"
+      },
+      "id": "1a8ecd83-4d2b-48ee-99b9-2796cbb77bbe",
+      "name": "Daily_Scraper_Cron",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        250,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "categories",
+              "value": "technology,sports,world,entertainment,business"
+            },
+            {
+              "name": "newsapi_url",
+              "value": "https://newsapi.org/v2/top-headlines"
+            },
+            {
+              "name": "max_results",
+              "value": "20"
+            },
+            {
+              "name": "similarity_threshold",
+              "value": "0.85"
+            },
+            {
+              "name": "country",
+              "value": "us"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "64e9a540-0475-4063-a9dc-df7c4c8bbf02",
+      "name": "Set_Variables",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        250,
+        280
+      ]
+    }
+  ],
+  "connections": {
+    "Daily_Scraper_Cron": {
+      "main": [
+        [
+          {
+            "node": "Set_Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "errorWorkflow": "NewsIQ_Error_Handler"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "news-iq"
+    },
+    {
+      "name": "scraper"
+    }
+  ]
+}

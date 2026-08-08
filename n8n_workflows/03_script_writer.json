@@ -1,0 +1,63 @@
+{
+  "name": "NewsIQ_03_Script_Writer",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": [
+          {
+            "type": "everyDay",
+            "hour": 9,
+            "minute": 30
+          }
+        ]
+      },
+      "id": "ee94ed8d-32ff-4d25-9504-c9d318189a5d",
+      "name": "Daily_Script_Cron",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        100,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "rule": [
+          {
+            "type": "everyWeek",
+            "hour": 18,
+            "minute": 0,
+            "weekday": 0
+          }
+        ]
+      },
+      "id": "6c93a5b9-4815-49f4-894a-4087bf9f9839",
+      "name": "Weekly_Script_Cron",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        500,
+        100
+      ]
+    }
+  ],
+  "connections": {
+    "Daily_Script_Cron": {
+      "main": []
+    },
+    "Weekly_Script_Cron": {
+      "main": []
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [
+    {
+      "name": "news-iq"
+    },
+    {
+      "name": "scripts"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "name": "NewsIQ_02_Research_Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": [
+          {
+            "type": "everyDay",
+            "hour": 8,
+            "minute": 30
+          }
+        ]
+      },
+      "id": "c075737f-1001-477b-940c-74168b0ac80c",
+      "name": "Research_Cron",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        250,
+        100
+      ]
+    }
+  ],
+  "connections": {
+    "Research_Cron": {
+      "main": []
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [
+    {
+      "name": "news-iq"
+    },
+    {
+      "name": "research"
+    }
+  ]
+}
