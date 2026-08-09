@@ -19,13 +19,13 @@ RUN pip install --no-cache-dir \
     google-cloud-texttospeech \
     google-api-python-client google-auth-oauthlib \
     google-auth-httplib2 google-auth \
-    twilio python-dateutil ffmpeg-python
+    twilio python-dateutil ffmpeg-python \
+    numpy \
+    psycopg2-binary
 
-RUN pip install --no-cache-dir \
-    numpy==1.26.4 \
-    torch --index-url https://download.pytorch.org/whl/cpu \
-    sentence-transformers==3.0.1 \
-    psycopg2-binary==2.9.9
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+
+RUN pip install --no-cache-dir sentence-transformers
 
 COPY python_nodes/ ./python_nodes/
 COPY config/ ./config/
