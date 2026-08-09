@@ -2,26 +2,36 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install system dependencies
 RUN apt-get update && apt-get install -y \
     ffmpeg \
     libpq-dev \
     gcc \
+    build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first (for layer caching)
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip setuptools wheel
 
-# Copy application code
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir \
+    fastapi uvicorn python-dotenv pydantic \
+    requests anthropic \
+    google-cloud-texttospeech \
+    google-api-python-client google-auth-oauthlib \
+    google-auth-httplib2 google-auth \
+    twilio python-dateutil ffmpeg-python
+
+RUN pip install --no-cache-dir \
+    numpy==1.26.4 \
+    torch --index-url https://download.pytorch.org/whl/cpu \
+    sentence-transformers==3.0.1 \
+    psycopg2-binary==2.9.9
+
 COPY python_nodes/ ./python_nodes/
 COPY config/ ./config/
 
-# Set working directory to where the API service lives
 WORKDIR /app/python_nodes
 
-# Expose port
 EXPOSE 8001
 
-# Start the service
 CMD ["uvicorn", "api_service:app", "--host", "0.0.0.0", "--port", "8001"]
