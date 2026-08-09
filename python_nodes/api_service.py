@@ -19,18 +19,19 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 import requests
 import numpy as np
-from sentence_transformers import SentenceTransformer
 
 load_dotenv()
 
 app = FastAPI(title="News IQ Service", version="1.0.0")
 
-# Global model (loaded once at startup)
+# Global model (lazy-loaded on first request, NOT at startup)
 embedding_model = None
 
 def get_embedding_model():
+    """Lazy-load the embedding model on first use."""
     global embedding_model
     if embedding_model is None:
+        from sentence_transformers import SentenceTransformer
         embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
     return embedding_model
 
@@ -182,6 +183,7 @@ async def health_check():
         "status": "healthy",
         "service": "news-iq",
         "version": "1.0.0",
+        "model_loaded": embedding_model is not None,
         "timestamp": datetime.utcnow().isoformat() + "Z"
     }
 
